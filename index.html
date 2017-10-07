@@ -15,77 +15,89 @@
 
 <div class="col-md-4, position">
   <h1>Travel Around The World!</h1>
-    <h1 id="thedashes">_ _ _ _ _ _</h1>
+    <h1 id="dashes">_ _ _ _ _ _</h1>
     <h1 id="points"></h1>
     <h1 id="life"></h1>
-    <div><input type="text" size="5" id="userguess" maxlength="1"></div>
+    <div><input type="text" size="5" id="user" maxlength="1"></div>
     <br><br>
     <button id="button">Start</button>
 </div>
 
 <script type="text/javascript">
 
-var word = ["argentina", "germany", "brazil", "israel", "sweden", "russia"];
+var word = ['argentina', 'bolivia', 'germany', 'russia', 'canada', 'israel'];
 var computerChoice;
 var userGuess;
-var dashes="";
-var guessesLeft = 10;
-var points= 0;
+var dashes;
+var life=10;
+var points=0;
 
+function travelAround()
+{
+    dashes = "";
+    ComputerChoice = word[Math.floor(Math.random() * word.length)];
+    console.log(ComputerChoice);
 
-
-function travelAround() {
-
-  computerChoice = word[Math.floor(Math.random() * word.length)];
-  console.log(computerChoice);
-
-    for(var i = 0; i < computerChoice.length; i++)
+    for(var i = 0; i < ComputerChoice.length; i++)
     {
         dashes += "_ ";
     }
-}
 
+}
 
 function travel()
 {
     var right = false;
-    var newDashes = document.getElementById("userguess");
-    userGuess = newDashes.value;
+    var left= document.getElementById("user");
+    userGuess = left.value;
 
-    for(var i = 0; i <computerChoice.length; i++)
+    for(var i = 0; i < ComputerChoice.length; i++)
     {
-        if(userGuess == computerChoice.substring(i, i + 1))
+        if(userGuess == ComputerChoice.substring(i, i + 1))
         {
             right = true;
             dashes = dashes.substring(0, i) + userGuess + dashes.substring(i + 1, dashes.length + 1);
-        }
-    }
-    if(!right)
-    {
-        guessesLeft--;
-    }
-    if(dashes == computerChoice)
-    {
-      points++;
-    }
-    if(guessesLeft == 0)
-    {
-      alert("GAME OVER!");
+            document.getElementById("dashes").innerHTML = dashes;
 
-        travelAround();
+            if(!right)
+            {
+                life--;
+            }
+            if(userGuess == ComputerChoice)
+            {
+              points++
+
+            }
+            if(life == 0)
+            {
+                alert("Game Over!")
+                travelAround();
+            }
+            if(userGuess == ComputerChoice)
+            {
+              points++
+
+            }
+            if(life == 0)
+            {
+                alert("Game Over!")
+                travelAround();
+            }
+        }
     }
 
 }
-
 travelAround();
 
-var buttonText = document.getElementById("button").innerHTML = "Guess";
 document.getElementById("button").addEventListener("click", travel);
-document.getElementById("thedashes").innerHTML = dashes;
-document.getElementById("points").innerHTML = "Points: " + points;
-document.getElementById("life").innerHTML = "Life: " + guessesLeft;
-;
 
+document.getElementById("button").innerHTML = "Country";
+
+document.getElementById("dashes").innerHTML = dashes;
+
+document.getElementById("life").innerHTML = "Life: " + life;
+
+document.getElementById("points").innerHTML = "Points: " + points;
 
 </script>
 </body>
