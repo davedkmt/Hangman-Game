@@ -1,0 +1,15 @@
+body {
+
+  background-image: url("http://i.imgur.com/njPhhkc.gif");
+  color:white;
+}
+
+.position {
+  position: absolute;
+   left: 450px;
+   top: 150px;
+
+   border:dotted;
+   padding:100px;
+   text-align: center;
+}

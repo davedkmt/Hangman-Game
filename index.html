@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <title>Travel</title>
+
+  <link href="reset.css" type="css/text" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+
+
+</head>
+<body>
+
+
+
+<div class="col-md-4, position">
+  <h1>Travel Around The World!</h1>
+    <h1 id="thedashes">_ _ _ _ _ _</h1>
+    <h1 id="points"></h1>
+    <h1 id="life"></h1>
+    <div><input type="text" size="5" id="userguess" maxlength="1"></div>
+    <br><br>
+    <button id="button">Start</button>
+</div>
+
+<script type="text/javascript">
+
+var word = ["argentina", "germany", "brazil", "israel", "sweden", "russia"];
+var computerChoice;
+var userGuess;
+var dashes="";
+var guessesLeft = 10;
+var points= 0;
+
+
+
+function travelAround() {
+
+  computerChoice = word[Math.floor(Math.random() * word.length)];
+  console.log(computerChoice);
+
+    for(var i = 0; i < computerChoice.length; i++)
+    {
+        dashes += "_ ";
+    }
+}
+
+
+function travel()
+{
+    var right = false;
+    var newDashes = document.getElementById("userguess");
+    userGuess = newDashes.value;
+
+    for(var i = 0; i <computerChoice.length; i++)
+    {
+        if(userGuess == computerChoice.substring(i, i + 1))
+        {
+            right = true;
+            dashes = dashes.substring(0, i) + userGuess + dashes.substring(i + 1, dashes.length + 1);
+        }
+    }
+    if(!right)
+    {
+        guessesLeft--;
+    }
+    if(dashes == computerChoice)
+    {
+      points++;
+    }
+    if(guessesLeft == 0)
+    {
+      alert("GAME OVER!");
+
+        travelAround();
+    }
+
+}
+
+travelAround();
+
+var buttonText = document.getElementById("button").innerHTML = "Guess";
+document.getElementById("button").addEventListener("click", travel);
+document.getElementById("thedashes").innerHTML = dashes;
+document.getElementById("points").innerHTML = "Points: " + points;
+document.getElementById("life").innerHTML = "Life: " + guessesLeft;
+;
+
+
+</script>
+</body>
+
+</html>
