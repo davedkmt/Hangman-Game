@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <title>Travel</title>
+
+  <link href="reset.css" type="css/text" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+
+
+</head>
+<body>
+
+
+
+<div class="col-md-4, position">
+  <h1>Travel Around The World!</h1>
+    <h1 id="dashes">_ _ _ _ _ _</h1>
+    <h1 id="points"></h1>
+    <h1 id="life"></h1>
+    <div><input type="text" size="5" id="user" maxlength="1"></div>
+    <br><br>
+    <button id="button">Start</button>
+</div>
+
+<script type="text/javascript">
+
+var word = ['argentina', 'bolivia', 'germany', 'russia', 'canada', 'israel'];
+var computerChoice;
+var userGuess;
+var dashes;
+var life=10;
+var points=0;
+
+function travelAround()
+{
+    dashes = "";
+    ComputerChoice = word[Math.floor(Math.random() * word.length)];
+    console.log(ComputerChoice);
+
+    for(var i = 0; i < ComputerChoice.length; i++)
+    {
+        dashes += "_ ";
+    }
+
+}
+
+function travel()
+{
+    var right = false;
+    var left= document.getElementById("user");
+    userGuess = left.value;
+
+    for(var i = 0; i < ComputerChoice.length; i++)
+    {
+        if(userGuess == ComputerChoice.substring(i, i + 1))
+        {
+            right = true;
+            dashes = dashes.substring(0, i) + userGuess + dashes.substring(i + 1, dashes.length + 1);
+            document.getElementById("dashes").innerHTML = dashes;
+
+            if(!right)
+            {
+                life--;
+            }
+            if(userGuess == ComputerChoice)
+            {
+              points++
+
+            }
+            if(life == 0)
+            {
+                alert("Game Over!")
+           
+            }
+        }
+    }
+
+}
+travelAround();
+
+document.getElementById("button").addEventListener("click", travel);
+
+document.getElementById("button").innerHTML = "Country";
+
+document.getElementById("dashes").innerHTML = dashes;
+
+document.getElementById("life").innerHTML = "Life: " + life;
+
+document.getElementById("points").innerHTML = "Points: " + points;
+
+</script>
+</body>
+
+</html>
+
